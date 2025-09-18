@@ -1,4 +1,4 @@
-# Smart Healthcare System 🏥
+# Smart Healthcare System 
 
 A full-stack healthcare application for **patients** and **doctors** with:
 - Appointment booking (online/offline)
@@ -9,7 +9,7 @@ A full-stack healthcare application for **patients** and **doctors** with:
 
 ---
 
-## 🚀 Tech Stack
+##  Tech Stack
 **Backend**
 - Java 17 / Spring Boot 3
 - Spring Data JPA (Hibernate + MySQL)
@@ -27,14 +27,14 @@ A full-stack healthcare application for **patients** and **doctors** with:
 
 ---
 
-## 📂 Project Modules
+##  Project Modules
 - **Patient Dashboard**: browse doctors, view available slots, request appointments  
 - **Doctor Dashboard**: view pending appointments, approve/reject, manage slots  
 - **Admin**: (optional) manage doctors/patients  
 
 ---
 
-## ⚙️ Setup
+##  Setup
 
 ### 1. Backend
 ```bash
