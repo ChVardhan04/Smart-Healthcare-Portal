@@ -1,0 +1,15 @@
+com\vardhan\healthcare\model\DoctorSlot.class
+com\vardhan\healthcare\repo\DoctorSlotRepo.class
+com\vardhan\healthcare\controller\AuthController.class
+com\vardhan\healthcare\config\CorsConfig$1.class
+com\vardhan\healthcare\repo\AppointmentRepo.class
+com\vardhan\healthcare\model\Appointment$AppointmentBuilder.class
+com\vardhan\healthcare\model\DoctorSlot$DoctorSlotBuilder.class
+com\vardhan\healthcare\model\Appointment.class
+com\vardhan\healthcare\config\CorsConfig.class
+com\vardhan\healthcare\controller\AppointmentController.class
+com\vardhan\healthcare\service\AppointmentService.class
+com\vardhan\healthcare\config\WebClientConfig.class
+com\vardhan\healthcare\HealthcareApplication.class
+com\vardhan\healthcare\model\User.class
+com\vardhan\healthcare\repo\UserRepo.class
