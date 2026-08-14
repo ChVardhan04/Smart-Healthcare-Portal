@@ -4,16 +4,16 @@ A complete patient-doctor appointment platform: Java 17 + Spring Boot 3 backend,
 frontend, MySQL persistence. Built from the original spec, with two features made real
 rather than left as TODOs:
 
-1. **Live slot capacity** — every slot tracks `remainingSeats`, decrements on booking,
+1. **Live slot capacity** - every slot tracks `remainingSeats`, decrements on booking,
    increments back on cancellation/rejection, and is protected against overbooking by
    row-level locking + optimistic versioning (see `SlotService.reserveSeat`).
-2. **Symptom-based disease prediction** — a weighted, explainable scoring engine
+2. **Symptom-based disease prediction** - a weighted, explainable scoring engine
    (`DiseasePredictionService`) that matches submitted symptoms against a seeded
    knowledge base of 24 conditions and 44 symptoms, returning ranked likely conditions,
    the recommended specialist, and a severity flag (with an emergency warning banner
    in the UI when relevant).
 
-This is a real, functioning implementation — not a mock. It still needs your own
+This is a real, functioning implementation - not a mock. It still needs your own
 MySQL credentials and (optionally) SMTP credentials before it does anything for real.
 
 ## Architecture
@@ -26,7 +26,7 @@ smart-healthcare/
 ```
 
 Backend: RESTful JSON API, JWT auth, Spring Data JPA/Hibernate over MySQL 8.
-Frontend: React Router SPA, Axios client, no external UI kit — hand-built design system.
+Frontend: React Router SPA, Axios client, no external UI kit - hand-built design system.
 
 ## Quick start
 
@@ -37,7 +37,7 @@ docker compose up -d
 ```
 
 This starts MySQL 8 on `localhost:3306` with database `smart_healthcare`, user `root`,
-password `root_password` (matches the defaults in `application.properties` — change
+password `root_password` (matches the defaults in `application.properties` - change
 both together if you adjust one).
 
 If you'd rather use an existing MySQL install, just create the database:
@@ -54,11 +54,11 @@ mvn spring-boot:run
 ```
 
 Runs on `http://localhost:8080`. On first boot, `DataSeeder` populates the symptom/disease
-knowledge base automatically (idempotent — skips if data already exists).
+knowledge base automatically (idempotent - skips if data already exists).
 
 **Before running in anything beyond local dev:**
 - Change `app.jwtSecret` in `application.properties` to a long random string.
-- Fill in real SMTP credentials, or leave them as-is — `EmailService` catches send
+- Fill in real SMTP credentials, or leave them as-is - `EmailService` catches send
   failures and logs a warning instead of breaking the request, so the app works fine
   without a configured mail server, you just won't get emails.
 
@@ -81,7 +81,7 @@ Runs on `http://localhost:3000`, proxying `/api/*` to the backend on `:8080` (se
   a full slot (`slot-chip-full` is disabled in the UI).
 - Booking calls `SlotService.reserveSeat`, which pessimistic-locks the slot row and
   atomically decrements the seat count, throwing a 409 if it filled up in the exact
-  instant between page load and click — the frontend catches that and refetches so
+  instant between page load and click - the frontend catches that and refetches so
   the seat counts self-correct immediately.
 - Doctor rejection or patient cancellation calls `releaseSeat`, putting the seat back
   into circulation.
@@ -112,12 +112,12 @@ Runs on `http://localhost:3000`, proxying `/api/*` to the backend on `:8080` (se
 
 ## Extending toward production
 
-- Swap `PaymentService`'s mock provider for real Stripe/Razorpay SDK calls —
+- Swap `PaymentService`'s mock provider for real Stripe/Razorpay SDK calls -
   the create-intent/confirm shape is already provider-agnostic.
 - Add a real ML model behind `DiseasePredictionService` if you outgrow the
-  rule-based scorer — the `DiseaseMatch` response contract wouldn't need to change.
+  rule-based scorer - the `DiseaseMatch` response contract wouldn't need to change.
 - Add Testcontainers-based integration tests around `SlotService.reserveSeat`
-  specifically — that's the highest-value place to prove the concurrency guarantees
+  specifically - that's the highest-value place to prove the concurrency guarantees
   hold up under real parallel load, not just in code review.
 - The `.env`-style secrets (JWT secret, DB password, SMTP password) should move to
   environment variables or a secrets manager before any real deployment.
