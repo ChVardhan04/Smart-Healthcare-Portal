@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: smart-healthcare-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: smart_healthcare
+    ports:
+      - "3306:3306"
+    volumes:
+      - smart-healthcare-mysql-data:/var/lib/mysql
+
+volumes:
+  smart-healthcare-mysql-data:
